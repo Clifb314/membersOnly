@@ -1,0 +1,44 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    .header 
+      .home
+        a(href=(currentUser ? '/users' : '/')) Home 
+      if !currentUser
+        .logIn
+          a(href='/users/login') Log in
+        .signUp 
+          a(href='/signup') Sign up!
+      else 
+        .authLinks
+          a(href=`/users/all`) All Users
+          |  - 
+          a(href=`/users/auth/`) My Account
+          if currentUserStatus < 0
+            |  - 
+            a(href=`/users/upgrade`) Upgrade Membership
+        .logOut 
+          a(href='/users/logout') Log Out
+
+    block content
+    block foot
+      #msgBox
+        #msgContainer.open
+          p#msgTitle Click here to post!
+        #msgSubmit.closed 
+          form.closed(action='/users/msgSubmit' method='POST')
+            p Speak your mind! Post to our board
+            if !currentUser
+              p.error You must be logged in to post 
+            textarea(name="content", cols="30", rows="10") 
+            if currentUser
+              button(type='submit') Submit
+            else 
+              a(href='/users/login') Log in to post
+
+
+    block scripts
+      script(src="/javascripts/msgForm.js") 

@@ -1,0 +1,28 @@
+extends layout 
+
+
+block content 
+    h1= title 
+    p Please fill out the form below. All fields are required.
+    form.signup(action='', method="POST")
+        label(for='uName') Username: 
+        input#uName(type="text", name='uName', required, placeholder='Jsmith12')
+        label(for='fName') First Name: 
+        input#fName(type="text", name='fName', required, placeholder='John')
+        label(for='lName') Last Name:         
+        input#lName(type="text", name='lName', required, placeholder='Smith')
+        label(for='email') e-mail: 
+        input#email(type="text", name='email', required, placeholder='Jsmith12@aol.com')
+        label(for='password') password
+        input#pw1(type="password", name='password', required, placeholder='Password')
+        label(for='passwordCheck') password again
+        input#pw2(type="password", name='passwordCheck', required, placeholder='Enter password again')
+        p.pass Password should be at least 8 characters and contain at least 1 of: uppercase, lowercase, numbers, symbols.
+        button.signupSubmit(type='submit') Submit
+    div#signupErrors
+    if errorList
+        each error in errorList
+            p.errors= error.msg
+block scripts 
+    script(src="/javascripts/valid.js") 
+    script(src="/javascripts/msgForm.js") 

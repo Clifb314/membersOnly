@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+    h1= title 
+    .homepage 
+        p= 'Votes: ' + user.votes 
+        p Recent messages:
+        if user.msgHistory 
+            each msg in user.msgHistory 
+                .history 
+                    p= msg.content 
+                    p= msg.date 
+                    p= msg.votes
+        else 
+            p There's nothing here! Maybe they're shy

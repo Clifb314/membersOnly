@@ -1,0 +1,19 @@
+extends layout 
+
+block content 
+
+    if !users
+        p Uh oh, it's empty! Start recruiting
+    else
+        each user in users
+            .user 
+                p= 'Name: ' + user.uName
+                p= 'Votes: ' + user.votes 
+                p= 'Status: ' + user.checkStatus
+                p Message History: 
+                if user.msgHistory.length > 0
+                    each msg in user.msgHistory
+                        p.msgContent= msg.content 
+                        p.msgFoot= 'Votes: ' + msg.votes + ' / Date: ' + msg.date
+                else 
+                    p There's nothing here! Maybe they're shy

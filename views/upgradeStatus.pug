@@ -1,0 +1,17 @@
+extends layout 
+
+block content 
+    h1= title 
+    form.payment(action='', method='POST')
+        label(for="payment") Select your desired membership level:
+        select#options(name="payment")
+            option(value="0") Super User
+            option(value="1") Member 
+            option(value="-1", selected) User
+        p.price
+        button#payment(type='submit') Submit payment
+
+block scripts  
+
+    script(src="/javascripts/paymentAmt.js") 
+    script(src="/javascripts/msgForm.js") 

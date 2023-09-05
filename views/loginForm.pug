@@ -1,0 +1,12 @@
+extends layout 
+
+block content
+    h1= title 
+
+    form.login(action='', method='POST')
+        label(for='username') Username: 
+        input(type='text', name='username')
+        label(for='password') Password: 
+        input(type='password', name='password')
+        button(type='submit') Log in
+        p.errors

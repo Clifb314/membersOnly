@@ -1,0 +1,31 @@
+extends layout 
+
+
+block content 
+    h1= title 
+    if msgFeed
+        .msgGrid
+            each msg in msgFeed 
+                .msgCard 
+                    if currentUser 
+                        p.user 
+                            a(href=msg.user.url) #{msg.user.uName}
+                    else 
+                        p.user Anon
+                    .msgContent 
+                        p= msg.content
+                    .msgFoot 
+                    -const votes = !currentUser ? 'hidden' : msg.votes
+                    -const myDate = msg.date
+                    p.msgFoot= 'Votes: ' + votes + ' / Date: ' + myDate.toLocaleString()
+                    div.votes
+                        form.votes(action='', method='POST')
+                            input(type="hidden", name="msgID", value=msg._id)
+                            input(type="hidden", name="vote" value='up')
+                            button.votes(type='submit') Upvote
+                        form.votes(action='', method='POST')
+                            input(type="hidden", name="msgID", value=msg._id)
+                            input(type="hidden", name="vote" value='down')
+                            button.votes(type='submit') Downvote
+    else 
+        p There's nothing here... yet!
