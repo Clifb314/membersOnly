@@ -44,7 +44,7 @@ userSchema.virtual('url').get(function() {
 
 userSchema.virtual('quickLook').get(function() {
     const messages = this.msgHistory.length + 1
-    avgVote = messages / this.votes
+    avgVote = this.votes / messages
     const output = {
         name: this.uName,
         msgCount: messages,
