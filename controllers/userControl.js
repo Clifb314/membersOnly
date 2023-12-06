@@ -68,7 +68,7 @@ exports.userList = asyncHandler(async (req, res, next) => {
     .limit(15)
     .exec();
 
-  const out = users === [] ? false : users;
+  const out = users.length < 1 ? false : users;
 
   res.render("userList", {
     title: "User List",
